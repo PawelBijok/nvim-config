@@ -12,6 +12,15 @@ return { -- LSP Configuration & Plugins
 
     -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
+    {
+      'akinsho/flutter-tools.nvim',
+      lazy = false,
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        'stevearc/dressing.nvim', -- optional for vim.ui.select
+      },
+      config = true,
+    },
     { 'folke/neodev.nvim', opts = {} },
   },
   config = function()
@@ -192,6 +201,7 @@ return { -- LSP Configuration & Plugins
         -- "--port=8123",
         -- "--instrumentation-log-file=/Users/robertbrunhage/Desktop/lsp-log.txt",
       },
+
       filetypes = { 'dart' },
       init_options = {
         onlyAnalyzeProjectsWithOpenFiles = false,
@@ -202,6 +212,7 @@ return { -- LSP Configuration & Plugins
       },
       settings = {
         dart = {
+          lineLength = vim.o.textwidth,
           analysisExcludedFolders = dartExcludedFolders,
           updateImportsOnRename = true,
           completeFunctionCalls = true,
